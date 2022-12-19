@@ -8,22 +8,24 @@ from prophet.plot import plot_cross_validation_metric
 import base64
 
 st.title('📈 Automated Time Series Forecasting')
-"""Powered by DataSense"""
+st.write("""Powered by DataSense""")
+
 """
 This data app uses Facebook's open-source Prophet library to automatically generate future forecast values from an imported dataset.
 You'll be able to import your data from a CSV file, visualize trends and features, analyze forecast performance, and finally download the created forecast 😵 
-
 **In beta mode**
+"""
 
 """
 ### Step 1: Import Data
 """
 df = st.file_uploader('Import the time series csv file here. Columns must be labeled ds and y. The input to Prophet is always a dataframe with two columns: ds and y. The ds (datestamp) column should be of a format expected by Pandas, ideally YYYY-MM-DD for a date or YYYY-MM-DD HH:MM:SS for a timestamp. The y column must be numeric, and represents the measurement we wish to forecast.', type='csv')
 
-st.info(f"""
-#Upload a .csv file first. Sample to try: [peyton_manning_wiki_ts.csv](https://raw.githubusercontent.com/zachrenwick/streamlit_forecasting_app/master/example_data/example_wp_log_peyton_manning.csv)
-"""
-)
+st.info(
+            f"""
+                👆 Upload a .csv file first. Sample to try: [peyton_manning_wiki_ts.csv](https://raw.githubusercontent.com/zachrenwick/streamlit_forecasting_app/master/example_data/example_wp_log_peyton_manning.csv)
+                """
+        )
 
 if df is not None:
     data = pd.read_csv(df)
@@ -36,7 +38,6 @@ if df is not None:
 
 """
 ### Step 2: Select Forecast Horizon
-
 Keep in mind that forecasts become less accurate with larger forecast horizons.
 """
 
@@ -49,7 +50,6 @@ if df is not None:
 
 """
 ### Step 3: Visualize Forecast Data
-
 The below visual shows future predicted values. "yhat" is the predicted value, and the upper and lower limits are (by default) 80% confidence intervals.
 """
 if df is not None:
@@ -76,7 +76,6 @@ if df is not None:
 
 """
 ### Step 4: Download the Forecast Data
-
 The below link allows you to download the newly created forecast to your computer for further analysis and use.
 """
 if df is not None:
